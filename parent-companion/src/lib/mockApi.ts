@@ -3,9 +3,10 @@ import {
   mockChildren,
   mockActivity,
   mockReminders,
+  mockWeeklyPlan,
   getMockSummary,
 } from "@/data/mockData";
-import { ActivityItem, Child, ChildSummary, Parent, Reminder } from "@/types";
+import { ActivityItem, Child, ChildSummary, Parent, Reminder, WeeklyPlan } from "@/types";
 
 // Simulates network latency so loading states are visible in the demo.
 function delay<T>(value: T, ms = 350): Promise<T> {
@@ -14,6 +15,10 @@ function delay<T>(value: T, ms = 350): Promise<T> {
 
 // Working copy so create/update/delete persist for the session (resets on refresh).
 let reminders: Reminder[] = [...mockReminders];
+let weeklyPlan: WeeklyPlan = {
+  ...mockWeeklyPlan,
+  days: mockWeeklyPlan.days.map((d) => ({ ...d, items: [...d.items] })),
+};
 
 export async function fetchParent(): Promise<Parent> {
   return delay(mockParent);
@@ -60,6 +65,15 @@ export async function loginChild(
   if (!match) return { ok: false, error: "We couldn't find that name." };
   if (match.pin !== pin) return { ok: false, error: "That PIN doesn't match." };
   return { ok: true, childId: match.id };
+}
+
+export async function fetchWeeklyPlan(): Promise<WeeklyPlan> {
+  return delay({ ...weeklyPlan, days: weeklyPlan.days.map((d) => ({ ...d, items: [...d.items] })) });
+}
+
+export async function updateWeeklyPlan(plan: WeeklyPlan): Promise<WeeklyPlan> {
+  weeklyPlan = { ...plan, days: plan.days.map((d) => ({ ...d, items: [...d.items] })) };
+  return delay({ ...weeklyPlan, days: weeklyPlan.days.map((d) => ({ ...d, items: [...d.items] })) }, 200);
 }
 
 export async function fetchReminders(): Promise<Reminder[]> {

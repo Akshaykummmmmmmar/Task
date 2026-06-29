@@ -96,12 +96,57 @@ export function StudyIcon({ className }: IconProps) {
   );
 }
 
+export function WaterIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M12 3.5C12 3.5 6 10.5 6 14.5a6 6 0 0 0 12 0c0-4-6-11-6-11Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path d="M12 17.5a3 3 0 0 0 3-3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function ExerciseIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M4.5 12h15M12 4.5v15M7.5 7.5l9 9M16.5 7.5l-9 9"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+export function SleepIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M4.5 17.5A8.5 8.5 0 0 0 17 7.5a7 7 0 0 1-9 9Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path d="M16.5 4.5v4M18.5 6.5h-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export const TYPE_ICON: Record<ReminderType, (p: IconProps) => JSX.Element> = {
   meal: MealIcon,
   supplement: SupplementIcon,
   appointment: AppointmentIcon,
   assessment: AssessmentIcon,
   study: StudyIcon,
+  water: WaterIcon,
+  exercise: ExerciseIcon,
+  sleep: SleepIcon,
 };
 
 export function CheckIcon({ className }: IconProps) {
