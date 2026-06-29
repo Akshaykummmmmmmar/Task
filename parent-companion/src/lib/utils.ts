@@ -54,10 +54,13 @@ export function formatFull(iso: string) {
 
 export const TYPE_LABEL: Record<Reminder["type"], string> = {
   meal: "Meal",
-  supplement: "Supplement",
+  supplement: "Medicine",
   appointment: "Appointment",
   assessment: "Assessment",
   study: "Study",
+  water: "Water",
+  exercise: "Exercise",
+  sleep: "Sleep",
 };
 
 export function isOverdue(r: Reminder, now: Date = DEMO_NOW) {

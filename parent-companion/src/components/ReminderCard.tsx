@@ -10,6 +10,9 @@ const TYPE_TINT: Record<Reminder["type"], string> = {
   appointment: "bg-sand-100 text-stone-600",
   assessment: "bg-sage-50 text-sage-700",
   study: "bg-clay-50 text-clay-700",
+  water: "bg-sky-50 text-sky-700",
+  exercise: "bg-lime-50 text-lime-700",
+  sleep: "bg-violet-50 text-violet-700",
 };
 
 export function ReminderCard({

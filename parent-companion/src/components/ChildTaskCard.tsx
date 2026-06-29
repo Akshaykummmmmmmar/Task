@@ -11,6 +11,9 @@ const TYPE_BG: Record<Reminder["type"], string> = {
   appointment: "bg-sand-100",
   assessment: "bg-sage-50",
   study: "bg-sun-50",
+  water: "bg-sky-50",
+  exercise: "bg-lime-50",
+  sleep: "bg-violet-50",
 };
 
 const TYPE_FG: Record<Reminder["type"], string> = {
@@ -19,6 +22,9 @@ const TYPE_FG: Record<Reminder["type"], string> = {
   appointment: "text-stone-600",
   assessment: "text-sage-700",
   study: "text-sun-600",
+  water: "text-sky-700",
+  exercise: "text-lime-700",
+  sleep: "text-violet-700",
 };
 
 export function ChildTaskCard({
