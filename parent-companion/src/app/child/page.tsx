@@ -1,19 +1,63 @@
 "use client";
 
-import { useMemo } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { ChildShell } from "@/components/ChildShell";
-import { ChildTaskCard } from "@/components/ChildTaskCard";
 import { RequireRole } from "@/components/RequireRole";
-import { BadgeIcon, SparkleIcon } from "@/components/icons";
-import { fetchChildById, fetchReminders, sendNotification, updateReminder } from "@/lib/mockApi";
+import { StudyIcon } from "@/components/icons";
+import { fetchChildById } from "@/lib/mockApi";
 import { useSession } from "@/lib/session";
-import { isOverdue } from "@/lib/utils";
-import { Reminder } from "@/types";
+
+function HealthIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M12 21.5C12 21.5 4 16 4 10.5 4 7 7 4.5 12 4.5c5 0 8 2.5 8 6 0 5.5-8 11-8 11z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path d="M9 10.5h6M12 7.5v6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function DashboardCard({
+  title,
+  description,
+  icon,
+  href,
+  borderColor,
+}: {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  href: string;
+  borderColor: string;
+}) {
+  const router = useRouter();
+
+  return (
+    <button
+      onClick={() => router.push(href)}
+      className={`focus-ring flex items-center gap-5 rounded-[24px] border-2 border-transparent bg-white p-6 text-left shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-md active:scale-[0.98] ${borderColor}`}
+    >
+      <span className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-white shadow-soft">
+        {icon}
+      </span>
+      <div className="flex-1">
+        <h2 className="font-display text-2xl italic text-ink">{title}</h2>
+        <p className="mt-1 text-sm text-stone-500">{description}</p>
+      </div>
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 flex-shrink-0 text-stone-400">
+        <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </button>
+  );
+}
 
 function ChildContent() {
   const { session } = useSession();
-  const queryClient = useQueryClient();
   const childId = session?.childId;
 
   const { data: child } = useQuery({
@@ -22,120 +66,24 @@ function ChildContent() {
     enabled: !!childId,
   });
 
-  const { data: reminders, isLoading } = useQuery({
-    queryKey: ["reminders"],
-    queryFn: fetchReminders,
-  });
-
-  const updateMutation = useMutation({
-    mutationFn: ({ id, patch }: { id: string; patch: { status: "pending" | "completed" } }) =>
-      updateReminder(id, patch),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["reminders"] }),
-  });
-
-  function handleComplete(r: Reminder) {
-    const nextStatus = r.status === "completed" ? "pending" : "completed";
-    updateMutation.mutate({ id: r.id, patch: { status: nextStatus } });
-    if (nextStatus === "completed") {
-      sendNotification({ ...r, status: nextStatus });
-    }
-  }
-
-  const mine = useMemo(
-    () => (reminders ?? []).filter((r) => r.childId === childId),
-    [reminders, childId]
-  );
-
-  const todo = mine.filter((r) => r.status === "pending");
-  const done = mine.filter((r) => r.status === "completed");
-  const overdueCount = todo.filter((r) => isOverdue(r)).length;
-  const streak = done.length;
-
   return (
-    <ChildShell child={child} streak={streak}>
-      {isLoading ? (
-        <div className="flex flex-col gap-3">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div
-              key={i}
-              className="h-24 animate-pulse rounded-[24px] border-2 border-transparent bg-white/60"
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="flex flex-col gap-8">
-          {mine.length > 0 && (
-            <div className="fade-in rounded-[24px] bg-white/70 px-5 py-4 shadow-soft">
-              <div className="mb-2 flex items-center justify-between">
-                <p className="text-sm font-medium text-ink">
-                  {done.length} of {mine.length} done today
-                </p>
-                <p className="text-sm text-sky-600">
-                  {Math.round((done.length / mine.length) * 100)}%
-                </p>
-              </div>
-              <div className="h-2.5 w-full overflow-hidden rounded-full bg-sky-100">
-                <div
-                  className="h-full rounded-full bg-sky-500 transition-all duration-500"
-                  style={{ width: `${(done.length / mine.length) * 100}%` }}
-                />
-              </div>
-            </div>
-          )}
-
-          <section>
-            <div className="mb-4 flex items-center gap-2">
-              <h2 className="font-display text-xl italic text-ink">To do</h2>
-              {overdueCount > 0 && (
-                <span className="rounded-full bg-clay-100 px-2.5 py-0.5 text-xs font-medium text-clay-700">
-                  {overdueCount} need attention
-                </span>
-              )}
-            </div>
-            {todo.length === 0 ? (
-              <div className="fade-in flex flex-col items-center gap-3 rounded-[24px] border-2 border-dashed border-sky-200 bg-white/50 px-6 py-10 text-center">
-                <BadgeIcon className="h-10 w-10 text-sky-500" />
-                <p className="font-display text-lg italic text-ink">
-                  All done for now!
-                </p>
-                <p className="text-sm text-stone-500">
-                  Nice work — check back later for new tasks.
-                </p>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-3">
-                {todo.map((r, i) => (
-                  <div
-                    key={r.id}
-                    className="fade-in"
-                    style={{ animationDelay: `${Math.min(i, 6) * 0.05}s` }}
-                  >
-                    <ChildTaskCard
-                      reminder={r}
-                      overdue={isOverdue(r)}
-                      onComplete={handleComplete}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
-
-          {done.length > 0 && (
-            <section>
-              <div className="mb-4 flex items-center gap-2">
-                <SparkleIcon className="h-5 w-5 text-sun-500" />
-                <h2 className="font-display text-xl italic text-ink">Done</h2>
-              </div>
-              <div className="flex flex-col gap-3">
-                {done.map((r) => (
-                  <ChildTaskCard key={r.id} reminder={r} onComplete={handleComplete} />
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
-      )}
+    <ChildShell child={child}>
+      <div className="flex flex-col gap-5">
+        <DashboardCard
+          title="Study"
+          description="View and complete your study tasks"
+          icon={<StudyIcon className="h-8 w-8 text-sun-600" />}
+          href="/child/study"
+          borderColor="hover:border-sun-300"
+        />
+        <DashboardCard
+          title="Health"
+          description="View and complete your health tasks"
+          icon={<HealthIcon className="h-8 w-8 text-sage-600" />}
+          href="/child/health"
+          borderColor="hover:border-sage-300"
+        />
+      </div>
     </ChildShell>
   );
 }
