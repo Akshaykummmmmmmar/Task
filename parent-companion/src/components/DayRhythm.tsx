@@ -20,6 +20,9 @@ const TYPE_DOT: Record<Reminder["type"], string> = {
   appointment: "bg-stone-500",
   assessment: "bg-sage-700",
   study: "bg-clay-700",
+  water: "bg-sky-500",
+  exercise: "bg-lime-500",
+  sleep: "bg-violet-500",
 };
 
 export function DayRhythm({ reminders }: { reminders: Reminder[] }) {
@@ -82,10 +85,13 @@ export function DayRhythm({ reminders }: { reminders: Reminder[] }) {
         {(
           [
             ["meal", "Meal"],
-            ["supplement", "Supplement"],
+            ["supplement", "Medicine"],
             ["appointment", "Appointment"],
             ["assessment", "Assessment"],
             ["study", "Study"],
+            ["water", "Water"],
+            ["exercise", "Exercise"],
+            ["sleep", "Sleep"],
           ] as const
         ).map(([type, label]) => (
           <div key={type} className="flex items-center gap-1.5">

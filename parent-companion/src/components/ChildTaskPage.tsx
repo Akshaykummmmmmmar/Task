@@ -11,7 +11,7 @@ import { useSession } from "@/lib/session";
 import { isOverdue } from "@/lib/utils";
 import { Reminder, ReminderType } from "@/types";
 
-export function ChildTaskPage({ types, backHref }: { types: ReminderType[]; backHref?: string }) {
+export function ChildTaskPage({ types, backHref, children }: { types: ReminderType[]; backHref?: string; children?: React.ReactNode }) {
   const { session } = useSession();
   const queryClient = useQueryClient();
   const childId = session?.childId;
@@ -75,6 +75,7 @@ export function ChildTaskPage({ types, backHref }: { types: ReminderType[]; back
         </div>
       ) : (
         <div className="flex flex-col gap-8">
+          {children}
           {mine.length > 0 && (
             <div className="fade-in rounded-[24px] bg-white/70 px-5 py-4 shadow-soft">
               <div className="mb-2 flex items-center justify-between">

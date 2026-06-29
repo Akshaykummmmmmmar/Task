@@ -3,7 +3,10 @@ export type ReminderType =
   | "supplement"
   | "appointment"
   | "assessment"
-  | "study";
+  | "study"
+  | "water"
+  | "exercise"
+  | "sleep";
 export type ReminderRepeat = "none" | "daily" | "weekly";
 export type ReminderStatus = "pending" | "completed";
 
@@ -73,6 +76,21 @@ export interface ChildSummary {
     completed: number;
     assigned: number;
   };
+}
+
+export interface WeeklyPlanItem {
+  subject: Subject;
+  topic: string;
+}
+
+export interface WeeklyPlanDay {
+  day: string;
+  items: WeeklyPlanItem[];
+}
+
+export interface WeeklyPlan {
+  weekLabel: string;
+  days: WeeklyPlanDay[];
 }
 
 // Mirrors GET /children/{id}/activity

@@ -4,6 +4,7 @@ import {
   Reminder,
   ChildSummary,
   ActivityItem,
+  WeeklyPlan,
 } from "@/types";
 
 // This file stands in for the real GenExcel API.
@@ -198,4 +199,81 @@ export const mockReminders: Reminder[] = [
     repeat: "weekly",
     status: "pending",
   },
+  {
+    id: "rem_12",
+    childId: "child_1",
+    title: "Drink 8 glasses of water",
+    type: "water",
+    dueAt: "2026-06-28T20:00:00.000Z",
+    repeat: "daily",
+    status: "pending",
+  },
+  {
+    id: "rem_13",
+    childId: "child_1",
+    title: "Morning walk",
+    type: "exercise",
+    dueAt: "2026-06-28T07:00:00.000Z",
+    repeat: "daily",
+    status: "completed",
+  },
+  {
+    id: "rem_14",
+    childId: "child_1",
+    title: "Evening stretch routine",
+    type: "exercise",
+    dueAt: "2026-06-28T18:00:00.000Z",
+    repeat: "daily",
+    status: "pending",
+  },
+  {
+    id: "rem_15",
+    childId: "child_1",
+    title: "Bedtime by 9:30 PM",
+    type: "sleep",
+    dueAt: "2026-06-28T21:30:00.000Z",
+    repeat: "daily",
+    status: "pending",
+  },
 ];
+
+export const mockWeeklyPlan: WeeklyPlan = {
+  weekLabel: "Jun 29 – Jul 5",
+  days: [
+    {
+      day: "Monday",
+      items: [
+        { subject: "Math", topic: "Fractions – Addition & Subtraction" },
+        { subject: "English", topic: "Grammar – Tenses" },
+      ],
+    },
+    {
+      day: "Tuesday",
+      items: [
+        { subject: "Science", topic: "Photosynthesis – Deep Dive" },
+        { subject: "Computer Science", topic: "Python – Variables & Loops" },
+      ],
+    },
+    {
+      day: "Wednesday",
+      items: [
+        { subject: "Math", topic: "Fractions – Multiplication & Division" },
+        { subject: "Social Studies", topic: "Ancient Civilizations – Egypt" },
+      ],
+    },
+    {
+      day: "Thursday",
+      items: [
+        { subject: "English", topic: "Reading Comprehension – Ch. 3" },
+        { subject: "Science", topic: "Human Body – Digestive System" },
+      ],
+    },
+    {
+      day: "Friday",
+      items: [
+        { subject: "Math", topic: "Decimals & Fractions Review" },
+        { subject: "Computer Science", topic: "Python – Functions" },
+      ],
+    },
+  ],
+};
