@@ -61,6 +61,9 @@ module.exports = {
       boxShadow: {
         soft: "0 2px 14px rgba(45, 42, 38, 0.06)",
       },
+      spacing: {
+        4.5: "1.125rem",
+      },
     },
   },
   plugins: [],
