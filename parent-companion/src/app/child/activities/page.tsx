@@ -6,6 +6,7 @@ import { ChildShell } from "@/components/ChildShell";
 import { GamesIcon, PuzzleIcon } from "@/components/icons";
 import { RequireRole } from "@/components/RequireRole";
 import { Sudoku } from "@/components/Sudoku";
+import { Chess } from "@/components/Chess";
 import { MemoryMatch } from "@/components/MemoryMatch";
 import { cn } from "@/lib/utils";
 
@@ -56,14 +57,25 @@ export default function ActivitiesPage() {
               </svg>
             </button>
             {gamesOpen && (
-              <div className="fade-in rounded-[24px] bg-white/70 px-5 py-6 shadow-soft">
-                <div className="mb-5 flex items-center gap-2">
-                  <h3 className="font-display text-lg italic text-ink">Sudoku</h3>
-                  <span className="rounded-full bg-coral-100 px-2.5 py-0.5 text-xs font-medium text-coral-700">
-                    Game
-                  </span>
+              <div className="fade-in flex flex-col gap-6">
+                <div className="rounded-[24px] bg-white/70 px-5 py-6 shadow-soft">
+                  <div className="mb-5 flex items-center gap-2">
+                    <h3 className="font-display text-lg italic text-ink">Sudoku</h3>
+                    <span className="rounded-full bg-coral-100 px-2.5 py-0.5 text-xs font-medium text-coral-700">
+                      Game
+                    </span>
+                  </div>
+                  <Sudoku />
                 </div>
-                <Sudoku />
+                <div className="rounded-[24px] bg-white/70 px-5 py-6 shadow-soft">
+                  <div className="mb-5 flex items-center gap-2">
+                    <h3 className="font-display text-lg italic text-ink">Chess</h3>
+                    <span className="rounded-full bg-coral-100 px-2.5 py-0.5 text-xs font-medium text-coral-700">
+                      Game
+                    </span>
+                  </div>
+                  <Chess />
+                </div>
               </div>
             )}
           </section>

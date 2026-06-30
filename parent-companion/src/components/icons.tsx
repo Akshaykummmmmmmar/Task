@@ -338,6 +338,21 @@ export function PuzzleIcon({ className }: IconProps) {
   );
 }
 
+export function PassionIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M12 4.5C12 4.5 7 9.5 7 13.5a5 5 0 0 0 10 0c0-4-5-9-5-9Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path d="M12 15.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" />
+      <path d="M4 19.5h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function GamesIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
@@ -346,6 +361,17 @@ export function GamesIcon({ className }: IconProps) {
       <circle cx="12" cy="12" r="1.2" fill="currentColor" />
       <circle cx="15.5" cy="12" r="1.2" fill="currentColor" />
       <path d="M18 11v2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function ChessIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <rect x="5" y="15" width="14" height="5" rx="1" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M7 15 8.5 7.5h7L17 15" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M10.5 7.5C10.5 7.5 9 5 12 3c3 2 1.5 4.5 1.5 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <circle cx="12" cy="2.5" r="0.8" fill="currentColor" />
     </svg>
   );
 }

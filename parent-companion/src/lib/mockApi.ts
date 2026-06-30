@@ -5,8 +5,10 @@ import {
   mockReminders,
   mockWeeklyPlan,
   getMockSummary,
+  getPassionData,
+  mockPassions,
 } from "@/data/mockData";
-import { ActivityItem, Child, ChildSummary, Parent, Reminder, WeeklyPlan } from "@/types";
+import { ActivityItem, Child, ChildSummary, Parent, Reminder, WeeklyPlan, PassionDef, PassionData } from "@/types";
 
 // Simulates network latency so loading states are visible in the demo.
 function delay<T>(value: T, ms = 350): Promise<T> {
@@ -65,6 +67,14 @@ export async function loginChild(
   if (!match) return { ok: false, error: "We couldn't find that name." };
   if (match.pin !== pin) return { ok: false, error: "That PIN doesn't match." };
   return { ok: true, childId: match.id };
+}
+
+export async function fetchPassions(): Promise<PassionDef[]> {
+  return delay([...mockPassions]);
+}
+
+export async function fetchPassionData(passionId: string): Promise<PassionData | undefined> {
+  return delay(getPassionData(passionId));
 }
 
 export async function fetchWeeklyPlan(): Promise<WeeklyPlan> {
