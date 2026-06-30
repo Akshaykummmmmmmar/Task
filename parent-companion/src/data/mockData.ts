@@ -5,6 +5,10 @@ import {
   ChildSummary,
   ActivityItem,
   WeeklyPlan,
+  PassionDef,
+  PassionData,
+  RoadmapStage,
+  LearningResource,
 } from "@/types";
 
 // This file stands in for the real GenExcel API.
@@ -236,6 +240,155 @@ export const mockReminders: Reminder[] = [
     status: "pending",
   },
 ];
+
+export const mockPassions: PassionDef[] = [
+  { id: "football", name: "Football", emoji: "⚽", category: "sports" },
+  { id: "cricket", name: "Cricket", emoji: "🏏", category: "sports" },
+  { id: "basketball", name: "Basketball", emoji: "🏀", category: "sports" },
+  { id: "athletics", name: "Athletics", emoji: "🏃", category: "sports" },
+  { id: "chess", name: "Chess", emoji: "♟️", category: "mind" },
+  { id: "drawing", name: "Drawing", emoji: "🎨", category: "arts" },
+  { id: "painting", name: "Painting", emoji: "🖌️", category: "arts" },
+  { id: "music", name: "Music", emoji: "🎵", category: "arts" },
+  { id: "dance", name: "Dance", emoji: "💃", category: "arts" },
+  { id: "coding", name: "Coding", emoji: "💻", category: "stem" },
+  { id: "robotics", name: "Robotics", emoji: "🤖", category: "stem" },
+  { id: "photography", name: "Photography", emoji: "📷", category: "arts" },
+  { id: "writing", name: "Writing", emoji: "✍️", category: "arts" },
+];
+
+function footballRoadmap(): RoadmapStage[] {
+  return [
+    { id: "fb_basics", name: "Basics", description: "Learn the rules, positions, and basic techniques", completed: true, locked: false },
+    { id: "fb_ball", name: "Ball Control", description: "Dribbling, trapping, and controlling the ball", completed: false, locked: false },
+    { id: "fb_passing", name: "Passing", description: "Short passes, long passes, and crossing", completed: false, locked: true },
+    { id: "fb_dribbling", name: "Dribbling", description: "Running with the ball and beating defenders", completed: false, locked: true },
+    { id: "fb_shooting", name: "Shooting", description: "Accuracy, power, and different shot techniques", completed: false, locked: true },
+    { id: "fb_match", name: "Match Practice", description: "Apply all skills in practice matches", completed: false, locked: true },
+  ];
+}
+
+function footballPracticePlan(): { warmUp: string; skillPractice: string; physicalExercise: string; coolDown: string } {
+  return {
+    warmUp: "5 min light jog + dynamic stretches (leg swings, high knees)",
+    skillPractice: "15 min dribbling through cones + 10 min passing drills with a partner",
+    physicalExercise: "10 min shuttle runs + 15 min endurance jogging",
+    coolDown: "5 min static stretches focusing on hamstrings and quads",
+  };
+}
+
+function footballResources(stageId: string): LearningResource[] {
+  return [
+    { title: "Football Basics Guide", type: "article", content: "Learn the fundamental rules and positions of football. Understand the offside rule, fouls, and basic formations." },
+    { title: "Beginner Drill: Ball Control", type: "video", content: "Watch this step-by-step drill to improve your first touch and ball control." },
+    { title: "Practice Tip", type: "tip", content: "Practice with both feet! Even 10 minutes a day with your weaker foot makes a huge difference." },
+  ];
+}
+
+function codingRoadmap(): RoadmapStage[] {
+  return [
+    { id: "cd_intro", name: "Introduction", description: "What is coding? Learn basic concepts", completed: true, locked: false },
+    { id: "cd_vars", name: "Variables & Data", description: "Understand variables, numbers, and text", completed: false, locked: false },
+    { id: "cd_loops", name: "Loops & Conditions", description: "Learn if/else statements and loops", completed: false, locked: true },
+    { id: "cd_functions", name: "Functions", description: "Write reusable code with functions", completed: false, locked: true },
+    { id: "cd_project", name: "Mini Project", description: "Build a simple project using everything learned", completed: false, locked: true },
+  ];
+}
+
+function codingPracticePlan(): { warmUp: string; skillPractice: string; physicalExercise: string; coolDown: string } {
+  return {
+    warmUp: "5 min typing practice on keybr.com",
+    skillPractice: "20 min coding challenge on the current topic",
+    physicalExercise: "5 min eye exercises + 10 min walking/stretching break",
+    coolDown: "5 min review what you learned today and plan tomorrow's goal",
+  };
+}
+
+function codingResources(_stageId: string): LearningResource[] {
+  return [
+    { title: "What is Programming?", type: "video", content: "A fun animated introduction to programming concepts for kids." },
+    { title: "Coding Practice Tips", type: "tip", content: "Code a little every day. Consistency beats cramming! Try the Pomodoro technique: 25 min coding, 5 min break." },
+    { title: "Kids Coding Glossary", type: "article", content: "Simple explanations of common coding terms: variable, loop, function, condition, array, and more." },
+  ];
+}
+
+const passionQuoteMap: Record<string, string[]> = {
+  football: [
+    "The harder you work, the luckier you get. — Gary Player",
+    "Success is no accident. It is hard work, perseverance, learning, studying, sacrifice. — Pelé",
+    "Don't practice until you get it right. Practice until you can't get it wrong.",
+  ],
+  coding: [
+    "Everybody should learn to program a computer because it teaches you how to think. — Steve Jobs",
+    "The best way to predict the future is to create it. — Alan Kay",
+    "First, solve the problem. Then, write the code.",
+  ],
+};
+
+function getQuote(passionId: string): string {
+  const quotes = passionQuoteMap[passionId] ?? [
+    "Believe you can and you're halfway there. — Theodore Roosevelt",
+    "The only way to do great work is to love what you do.",
+  ];
+  return quotes[Math.floor(Math.random() * quotes.length)];
+}
+
+export function getPassionData(passionId: string): PassionData | undefined {
+  const passion = mockPassions.find((p) => p.id === passionId);
+  if (!passion) return undefined;
+
+  let stages: RoadmapStage[];
+  let practicePlan: { warmUp: string; skillPractice: string; physicalExercise: string; coolDown: string };
+  let resources: LearningResource[];
+
+  if (passionId === "football") {
+    stages = footballRoadmap();
+    practicePlan = footballPracticePlan();
+    resources = footballResources("all");
+  } else if (passionId === "coding") {
+    stages = codingRoadmap();
+    practicePlan = codingPracticePlan();
+    resources = codingResources("all");
+  } else {
+    stages = [
+      { id: `${passionId}_intro`, name: "Getting Started", description: `Learn the basics of ${passion.name}`, completed: false, locked: false },
+      { id: `${passionId}_practice`, name: "Practice", description: `Practice and improve your ${passion.name} skills`, completed: false, locked: true },
+      { id: `${passionId}_advance`, name: "Advanced", description: `Take your ${passion.name} skills to the next level`, completed: false, locked: true },
+    ];
+    practicePlan = {
+      warmUp: "5 min light stretching and breathing exercises",
+      skillPractice: `20 min focused practice on ${passion.name}`,
+      physicalExercise: "10 min active break — walk, jump, or stretch",
+      coolDown: "5 min reflect on what you learned today",
+    };
+    resources = [
+      { title: `Getting Started with ${passion.name}`, type: "article", content: `A beginner-friendly introduction to ${passion.name}.` },
+      { title: "Daily Practice Tip", type: "tip", content: "Small steps every day lead to big improvements over time. Stay consistent!" },
+    ];
+  }
+
+  const completedStages = stages.filter((s) => s.completed).length;
+  const progress = Math.round((completedStages / stages.length) * 100);
+
+  return {
+    passion,
+    progress: {
+      passionId,
+      selectedAt: "2026-06-25T10:00:00.000Z",
+      level: progress >= 60 ? "Intermediate" : progress >= 20 ? "Beginner" : "Beginner",
+      progress,
+      daysPracticed: 12,
+      completedLessons: completedStages,
+      currentStreak: 5,
+      currentStageIndex: stages.findIndex((s) => !s.completed),
+      stages,
+      practicePlan,
+    },
+    roadmap: stages,
+    resources,
+    quote: getQuote(passionId),
+  };
+}
 
 export const mockWeeklyPlan: WeeklyPlan = {
   weekLabel: "Jun 29 – Jul 5",

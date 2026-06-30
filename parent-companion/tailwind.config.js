@@ -50,6 +50,15 @@ module.exports = {
           500: "#EFA22B",
           600: "#C9821C",
         },
+        coral: {
+          100: "#FDE8E8",
+          200: "#F9C5C5",
+          300: "#F3A0A0",
+          400: "#E97676",
+          500: "#D94A4A",
+          600: "#B83A3A",
+          700: "#962E2E",
+        },
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],

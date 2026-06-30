@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { ChildShell } from "@/components/ChildShell";
 import { RequireRole } from "@/components/RequireRole";
-import { StudyIcon } from "@/components/icons";
+import { GamesIcon, PassionIcon, StudyIcon } from "@/components/icons";
 import { fetchChildById } from "@/lib/mockApi";
 import { useSession } from "@/lib/session";
 
@@ -82,6 +82,20 @@ function ChildContent() {
           icon={<HealthIcon className="h-8 w-8 text-sage-600" />}
           href="/child/health"
           borderColor="hover:border-sage-300"
+        />
+        <DashboardCard
+          title="Activities"
+          description="Games, puzzles and fun activities"
+          icon={<GamesIcon className="h-8 w-8 text-coral-600" />}
+          href="/child/activities"
+          borderColor="hover:border-coral-300"
+        />
+        <DashboardCard
+          title="Passion & Talent"
+          description="Explore your interests and build skills"
+          icon={<PassionIcon className="h-8 w-8 text-violet-600" />}
+          href="/child/passion"
+          borderColor="hover:border-violet-300"
         />
       </div>
     </ChildShell>

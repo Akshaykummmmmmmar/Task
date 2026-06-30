@@ -93,6 +93,56 @@ export interface WeeklyPlan {
   days: WeeklyPlanDay[];
 }
 
+export interface RoadmapStage {
+  id: string;
+  name: string;
+  description: string;
+  completed: boolean;
+  locked: boolean;
+}
+
+export interface PracticePlan {
+  warmUp: string;
+  skillPractice: string;
+  physicalExercise: string;
+  coolDown: string;
+}
+
+export interface LearningResource {
+  title: string;
+  type: "tutorial" | "article" | "video" | "tip";
+  url?: string;
+  content: string;
+}
+
+export interface PassionDef {
+  id: string;
+  name: string;
+  emoji: string;
+  category: string;
+}
+
+export interface PassionProgress {
+  passionId: string;
+  selectedAt: string;
+  level: "Beginner" | "Intermediate" | "Advanced";
+  progress: number;
+  daysPracticed: number;
+  completedLessons: number;
+  currentStreak: number;
+  currentStageIndex: number;
+  stages: RoadmapStage[];
+  practicePlan: PracticePlan;
+}
+
+export interface PassionData {
+  passion: PassionDef;
+  progress: PassionProgress;
+  roadmap: RoadmapStage[];
+  resources: LearningResource[];
+  quote: string;
+}
+
 // Mirrors GET /children/{id}/activity
 export interface ActivityItem {
   id: string;
