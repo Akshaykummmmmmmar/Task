@@ -42,7 +42,7 @@ export function ChildTaskCard({
   return (
     <div
       className={cn(
-        "flex items-center gap-4 rounded-[24px] border-2 bg-white p-4 shadow-soft transition-all sm:p-5",
+        "flex items-center gap-4 rounded-2xl border-2 bg-white p-4 shadow-clay transition-all sm:p-5",
         done
           ? "border-sage-100 opacity-60"
           : overdue
@@ -77,7 +77,7 @@ export function ChildTaskCard({
         aria-pressed={done}
         aria-label={done ? "Mark as not done" : "Mark as done"}
         className={cn(
-          "focus-ring flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 text-paper transition-all active:scale-95",
+          "focus-ring flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 text-paper shadow-clay-btn transition-all active:scale-95 active:shadow-clay-inset",
           done
             ? "border-sage-500 bg-sage-500"
             : "border-sky-300 bg-sky-500 hover:bg-sky-600"

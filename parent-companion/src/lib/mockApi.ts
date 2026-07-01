@@ -7,8 +7,21 @@ import {
   getMockSummary,
   getPassionData,
   mockPassions,
+  mockAthleteProfile,
+  mockAthleteStats,
+  mockDailyMissions,
+  mockDailyRoutine,
+  mockNutritionPlan,
+  mockSleepData,
+  mockLegendAthletes,
+  mockCompetitions,
+  mockAchievements,
+  mockCoachMessages,
+  mockWeeklyImprovements,
+  getCoachResponse,
+  mockParentInsights,
 } from "@/data/mockData";
-import { ActivityItem, Child, ChildSummary, Parent, Reminder, WeeklyPlan, PassionDef, PassionData } from "@/types";
+import { ActivityItem, Child, ChildSummary, Parent, Reminder, WeeklyPlan, PassionDef, PassionData, AthleteProfile, AthleteStats, DailyMission, DailyRoutineItem, NutritionPlan, SleepData, LegendAthlete, Competition, Achievement, CoachMessage, Sport } from "@/types";
 
 // Simulates network latency so loading states are visible in the demo.
 function delay<T>(value: T, ms = 350): Promise<T> {
@@ -121,4 +134,87 @@ export async function deleteReminder(id: string): Promise<{ id: string }> {
 export async function sendNotification(reminder: Reminder): Promise<{ sent: boolean }> {
   console.log(`[mock notification] "${reminder.title}" sent to parent`);
   return delay({ sent: true }, 150);
+}
+
+// ─── Champion Journey API ──────────────────────────────────────────────
+
+let athleteProfile: AthleteProfile | null = null;
+
+export async function saveAthleteProfile(profile: AthleteProfile): Promise<AthleteProfile> {
+  athleteProfile = profile;
+  localStorage.setItem("champion_athlete_profile", JSON.stringify(profile));
+  return delay(profile, 300);
+}
+
+export async function fetchAthleteProfile(): Promise<AthleteProfile | null> {
+  if (athleteProfile) return delay(athleteProfile);
+  const stored = typeof window !== "undefined" ? localStorage.getItem("champion_athlete_profile") : null;
+  if (stored) {
+    athleteProfile = JSON.parse(stored);
+    return delay(athleteProfile);
+  }
+  return delay(mockAthleteProfile);
+}
+
+export async function fetchAthleteStats(): Promise<AthleteStats> {
+  return delay(mockAthleteStats());
+}
+
+export async function fetchDailyMissions(): Promise<DailyMission[]> {
+  return delay([...mockDailyMissions]);
+}
+
+export async function updateMission(missionId: string, patch: Partial<DailyMission>): Promise<DailyMission> {
+  return delay({ ...mockDailyMissions.find((m) => m.id === missionId)!, ...patch });
+}
+
+export async function fetchDailyRoutine(): Promise<DailyRoutineItem[]> {
+  return delay([...mockDailyRoutine]);
+}
+
+export async function fetchNutritionPlan(): Promise<NutritionPlan> {
+  return delay({ ...mockNutritionPlan });
+}
+
+export async function fetchSleepData(): Promise<SleepData> {
+  return delay({ ...mockSleepData });
+}
+
+export async function fetchLegendAthletes(): Promise<LegendAthlete[]> {
+  return delay([...mockLegendAthletes]);
+}
+
+export async function fetchLegendAthlete(id: string): Promise<LegendAthlete | undefined> {
+  return delay(mockLegendAthletes.find((a) => a.id === id));
+}
+
+export async function fetchCompetitions(): Promise<Competition[]> {
+  return delay([...mockCompetitions]);
+}
+
+export async function fetchAchievements(): Promise<Achievement[]> {
+  return delay([...mockAchievements]);
+}
+
+export async function fetchCoachMessages(): Promise<CoachMessage[]> {
+  return delay([...mockCoachMessages]);
+}
+
+export async function sendCoachMessage(sport: Sport, text: string): Promise<CoachMessage> {
+  const response = getCoachResponse(sport, text);
+  const msg: CoachMessage = {
+    id: `coach_${Math.random().toString(36).slice(2, 9)}`,
+    role: "coach",
+    text: response,
+    timestamp: new Date().toISOString(),
+  };
+  return delay(msg, 500);
+}
+
+export async function fetchWeeklyImprovements(): Promise<typeof mockWeeklyImprovements> {
+  return delay([...mockWeeklyImprovements]);
+}
+
+export async function fetchParentInsights(): Promise<typeof mockParentInsights> {
+  return delay({ ...mockParentInsights });
 }

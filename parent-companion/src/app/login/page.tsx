@@ -91,7 +91,7 @@ export default function LoginPage() {
 
       <div className="flex flex-1 items-center justify-center px-6 py-12">
         <div className="w-full max-w-sm">
-          <div className="mb-7 flex gap-1 rounded-full border border-sand-300 bg-white/70 p-1">
+          <div className="mb-7 flex gap-1 rounded-full border border-sand-300 bg-white/70 p-1 shadow-clay-inset">
             <button
               type="button"
               onClick={() => {
@@ -101,24 +101,24 @@ export default function LoginPage() {
               className={cn(
                 "focus-ring flex-1 rounded-full py-2 text-sm font-medium transition-colors",
                 mode === "parent"
-                  ? "bg-sage-500 text-paper"
+                  ? "bg-sage-500 text-paper shadow-clay-btn"
                   : "text-stone-500 hover:text-ink"
-              )}
-            >
-              I&apos;m a parent
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setMode("child");
-                setError(null);
-              }}
-              className={cn(
-                "focus-ring flex-1 rounded-full py-2 text-sm font-medium transition-colors",
-                mode === "child"
-                  ? "bg-clay-500 text-paper"
-                  : "text-stone-500 hover:text-ink"
-              )}
+            )}
+          >
+            I&apos;m a parent
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setMode("child");
+              setError(null);
+            }}
+            className={cn(
+              "focus-ring flex-1 rounded-full py-2 text-sm font-medium transition-all",
+              mode === "child"
+                ? "bg-clay-500 text-paper shadow-clay-btn"
+                : "text-stone-500 hover:text-ink"
+            )}
             >
               I&apos;m a kid
             </button>
@@ -137,7 +137,7 @@ export default function LoginPage() {
 
               <form
                 onSubmit={handleParentSubmit}
-                className="rounded-card border border-sand-300 bg-white/70 p-6 shadow-soft"
+                className="rounded-card border border-sand-300 bg-white/70 p-6 shadow-clay"
               >
                 <div className="mb-4">
                   <label htmlFor="email" className="mb-1.5 block text-xs font-medium text-stone-500">
@@ -177,7 +177,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="focus-ring mt-5 w-full rounded-full bg-sage-500 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-sage-600 disabled:opacity-60"
+                  className="focus-ring mt-5 w-full rounded-full bg-sage-500 py-2.5 text-sm font-medium text-paper shadow-clay-btn transition-all hover:bg-sage-600 hover:shadow-clay-lg active:shadow-clay-inset disabled:opacity-60"
                 >
                   {submitting ? "Signing in…" : "Log in"}
                 </button>
@@ -200,7 +200,7 @@ export default function LoginPage() {
 
               <form
                 onSubmit={handleChildSubmit}
-                className="rounded-card border border-sand-300 bg-white/70 p-6 shadow-soft"
+                className="rounded-card border border-sand-300 bg-white/70 p-6 shadow-clay"
               >
                 <div className="mb-4">
                   <label htmlFor="childName" className="mb-1.5 block text-xs font-medium text-stone-500">
@@ -241,7 +241,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="focus-ring mt-5 w-full rounded-full bg-clay-500 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-clay-600 disabled:opacity-60"
+                  className="focus-ring mt-5 w-full rounded-full bg-clay-500 py-2.5 text-sm font-medium text-paper shadow-clay-btn transition-all hover:bg-clay-600 hover:shadow-clay-lg active:shadow-clay-inset disabled:opacity-60"
                 >
                   {submitting ? "Checking…" : "Let's go"}
                 </button>
