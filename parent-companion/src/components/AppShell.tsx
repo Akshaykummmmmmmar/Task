@@ -97,7 +97,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <button
           onClick={() => setMobileNavOpen((v) => !v)}
           aria-label="Toggle navigation"
-          className="focus-ring flex h-9 w-9 items-center justify-center rounded-full text-stone-500 hover:bg-sand-100"
+          className="focus-ring flex h-9 w-9 items-center justify-center rounded-full text-stone-500 shadow-clay-btn hover:bg-sand-100"
         >
           <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
             <path
@@ -121,9 +121,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   href={item.href}
                   onClick={() => setMobileNavOpen(false)}
                   className={cn(
-                    "focus-ring flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm transition-colors",
+                    "focus-ring flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm transition-all",
                     active
-                      ? "bg-sage-50 font-medium text-sage-700"
+                      ? "bg-sage-50 font-medium text-sage-700 shadow-clay-inset"
                       : "text-stone-500 hover:bg-sand-100 hover:text-ink"
                   )}
                 >
@@ -134,7 +134,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             })}
             <button
               onClick={handleLogout}
-              className="focus-ring flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-left text-sm text-stone-500 transition-colors hover:bg-clay-50 hover:text-clay-700"
+              className="focus-ring flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-left text-sm text-stone-500 transition-all hover:bg-clay-50 hover:text-clay-700 hover:shadow-clay-btn"
             >
               <LogoutIcon className="h-4 w-4 flex-shrink-0" />
               Log out
@@ -162,12 +162,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={cn(
-                      "focus-ring relative flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm transition-colors",
-                      active
-                        ? "bg-sage-50 font-medium text-sage-700"
-                        : "text-stone-500 hover:bg-sand-100 hover:text-ink"
-                    )}
+              className={cn(
+                    "focus-ring relative flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm transition-all",
+                    active
+                      ? "bg-sage-50 font-medium text-sage-700 shadow-clay-inset"
+                      : "text-stone-500 hover:bg-sand-100 hover:text-ink"
+                  )}
                   >
                     {active && (
                       <span className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-sage-600" />
@@ -183,9 +183,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <button
               onClick={() => setAddChildOpen((v) => !v)}
               className={cn(
-                "focus-ring mt-4 flex w-full items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm transition-colors",
+                "focus-ring mt-4 flex w-full items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm transition-all",
                 addChildOpen
-                  ? "bg-sage-50 font-medium text-sage-700"
+                  ? "bg-sage-50 font-medium text-sage-700 shadow-clay-inset"
                   : "text-stone-500 hover:bg-sand-100 hover:text-ink"
               )}
             >
@@ -197,7 +197,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
 
           <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2.5 rounded-2xl border border-sand-300 bg-white/70 px-3.5 py-3">
+            <div className="flex items-center gap-2.5 rounded-2xl border border-sand-300 bg-white/70 px-3.5 py-3 shadow-clay">
               <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-sage-100 text-xs font-medium text-sage-700">
                 {initials}
               </span>
@@ -208,7 +208,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <p className="truncate text-xs text-stone-400">{parent?.email}</p>
               </div>
             </div>
-            <div className="rounded-2xl bg-sand-100 px-4 py-3.5">
+            <div className="rounded-2xl bg-sand-100 px-4 py-3.5 shadow-clay-inset">
               <p className="text-xs leading-relaxed text-stone-500">
                 Linked to GenExcel as a{" "}
                 <span className="font-medium text-ink">mock data</span> preview.
@@ -216,7 +216,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </div>
             <button
               onClick={handleLogout}
-              className="focus-ring flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm text-stone-500 transition-colors hover:bg-clay-50 hover:text-clay-700"
+              className="focus-ring flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm text-stone-500 transition-all hover:bg-clay-50 hover:text-clay-700 hover:shadow-clay-btn"
             >
               <LogoutIcon className="h-4 w-4 flex-shrink-0" />
               Log out
@@ -234,7 +234,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 </div>
                 <button
                   onClick={() => setAddChildOpen(false)}
-                  className="focus-ring flex items-center gap-2 rounded-lg border border-sand-300 bg-white/70 px-4 py-2 text-sm text-stone-500 transition-colors hover:bg-sand-100 hover:text-ink"
+                  className="focus-ring flex items-center gap-2 rounded-lg border border-sand-300 bg-white/70 px-4 py-2 text-sm text-stone-500 shadow-clay-btn transition-all hover:bg-sand-100 hover:text-ink hover:shadow-clay-lg"
                 >
                   <CloseIcon className="h-4 w-4" />
                   Close
@@ -246,7 +246,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <h2 className="mb-4 font-display text-lg italic text-ink">Your Children</h2>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {childrenList.map((c) => (
-                    <div key={c.id} className="group rounded-card border border-sand-300 bg-white/70 p-5 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(45,42,38,0.09)]">
+                    <div key={c.id} className="group rounded-card border border-sand-300 bg-white/70 p-5 shadow-clay transition-all duration-200 hover:-translate-y-0.5 hover:shadow-clay-lg">
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-3">
                           <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 font-display text-sm italic text-sage-700">
@@ -275,7 +275,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </div>
 
               {/* Add new child form */}
-              <div className="rounded-card border border-sage-200 bg-white/70 p-6 shadow-soft">
+              <div className="rounded-card border border-sage-200 bg-white/70 p-6 shadow-clay">
                 <h2 className="mb-5 font-display text-lg italic text-ink">Add a New Child</h2>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
@@ -344,7 +344,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <button
                   onClick={handleAddChild}
                   disabled={!newChild.name.trim() || !newChild.username.trim()}
-                  className="focus-ring mt-5 flex items-center gap-2 rounded-lg bg-sage-500 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-600 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="focus-ring mt-5 flex items-center gap-2 rounded-lg bg-sage-500 px-5 py-2.5 text-sm font-medium text-white shadow-clay-btn transition-all hover:bg-sage-600 hover:shadow-clay-lg disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <AddChildIcon className="h-4 w-4" />
                   Add Child

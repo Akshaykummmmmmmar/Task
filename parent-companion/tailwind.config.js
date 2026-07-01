@@ -69,6 +69,10 @@ module.exports = {
       },
       boxShadow: {
         soft: "0 2px 14px rgba(45, 42, 38, 0.06)",
+        clay: "0 8px 24px rgba(45, 42, 38, 0.08), 0 -4px 12px rgba(255, 255, 255, 0.7)",
+        "clay-lg": "0 12px 36px rgba(45, 42, 38, 0.1), 0 -4px 16px rgba(255, 255, 255, 0.8)",
+        "clay-btn": "0 4px 12px rgba(45, 42, 38, 0.06), 0 -2px 6px rgba(255, 255, 255, 0.5)",
+        "clay-inset": "inset 0 2px 4px rgba(45, 42, 38, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
       },
       spacing: {
         4.5: "1.125rem",
