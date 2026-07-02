@@ -151,7 +151,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <button
           onClick={() => setMobileNavOpen((v) => !v)}
           aria-label="Toggle navigation"
-          className="focus-ring flex h-9 w-9 items-center justify-center rounded-full text-stone-500 hover:bg-sand-100 dark:text-stone-400 dark:hover:bg-white/10"
+          className="focus-ring flex h-9 w-9 items-center justify-center rounded-full text-stone-500 shadow-clay-btn hover:bg-sand-100 dark:text-stone-400 dark:hover:bg-white/10"
         >
           <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -196,7 +196,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </Link>
             <button
               onClick={handleLogout}
-              className="focus-ring flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-left text-sm text-stone-500 transition-colors hover:bg-clay-50 hover:text-clay-700 dark:text-stone-400 dark:hover:bg-clay-500/15 dark:hover:text-clay-400"
+              className="focus-ring flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-left text-sm text-stone-500 transition-all hover:bg-clay-50 hover:text-clay-700 hover:shadow-clay-btn dark:text-stone-400 dark:hover:bg-clay-500/15 dark:hover:text-clay-400"
             >
               <LogoutIcon className="h-4 w-4 flex-shrink-0" />
               Log out
@@ -217,7 +217,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 Parent Companion
               </span>
             </div>
-
             <NavItems />
 
             {/* AI Co-pilot — special styled button */}
@@ -268,7 +267,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
           {/* Bottom: user profile + logout */}
           <div className="flex flex-col gap-2 pt-4">
-            <div className="flex items-center gap-2.5 rounded-2xl border border-sand-300 bg-white/70 px-3.5 py-3">
+            <div className="flex items-center gap-2.5 rounded-2xl border border-sand-300 bg-white/70 px-3.5 py-3 shadow-clay">
               <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-sage-100 text-xs font-medium text-sage-700">
                 {initials}
               </span>
@@ -277,8 +276,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <p className="truncate text-xs text-stone-400">{parent?.email}</p>
               </div>
             </div>
-            <div className="flex items-center justify-between rounded-2xl bg-sand-100 px-4 py-2.5 dark:bg-white/10">
-              <p className="text-xs text-stone-500">
+            <div className="flex items-center justify-between rounded-2xl bg-sand-100 px-4 py-2.5 shadow-clay-inset dark:bg-white/10">
+              <p className="text-xs leading-relaxed text-stone-500">
                 <span className="font-medium text-ink">Mock</span> preview
               </p>
               <button
@@ -321,7 +320,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <h3 className="mb-3 font-display text-base italic text-ink">Your Children</h3>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {childrenList.map((c) => (
-                    <div key={c.id} className="group flex items-start justify-between rounded-xl border border-sand-300 bg-white/70 p-4">
+                    <div key={c.id} className="group flex items-start justify-between rounded-xl border border-sand-300 bg-white/70 p-4 shadow-clay transition-all duration-200 hover:-translate-y-0.5 hover:shadow-clay-lg">
                       <div className="flex items-center gap-3">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 font-display text-sm italic text-sage-700">
                           {c.name.charAt(0).toUpperCase()}
@@ -346,10 +345,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
 
-              {/* Add child form */}
-              <div className="rounded-xl border border-sage-200 bg-white/70 p-5">
-                <h3 className="mb-4 font-display text-base italic text-ink">Add a New Child</h3>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {/* Add new child form */}
+              <div className="rounded-xl border border-sage-200 bg-white/70 p-6 shadow-clay">
+                <h2 className="mb-5 font-display text-lg italic text-ink">Add a New Child</h2>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="mb-1 block text-xs font-medium text-stone-500">Child Name *</label>
                     <input
@@ -416,7 +415,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <button
                   onClick={handleAddChild}
                   disabled={!newChild.name.trim() || !newChild.username.trim()}
-                  className="focus-ring mt-4 flex items-center gap-2 rounded-lg bg-sage-500 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-600 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="focus-ring mt-5 flex items-center gap-2 rounded-lg bg-sage-500 px-5 py-2.5 text-sm font-medium text-white shadow-clay-btn transition-all hover:bg-sage-600 hover:shadow-clay-lg disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <AddChildIcon className="h-4 w-4" />
                   Add Child

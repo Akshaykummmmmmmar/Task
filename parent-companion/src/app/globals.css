@@ -132,6 +132,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.clay-card {
+  @apply rounded-2xl bg-white/70 backdrop-blur-sm border border-white/20 shadow-clay;
+}
+
 ::selection {
   background-color: #e0a48c;
   color: #2d2a26;

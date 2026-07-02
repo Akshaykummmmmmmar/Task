@@ -48,7 +48,7 @@ export function ChildShell({
             <button
               onClick={handleLogout}
               aria-label="Log out"
-              className="focus-ring flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-sky-700 shadow-soft transition-colors hover:bg-white"
+              className="focus-ring flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-sky-700 shadow-clay-btn transition-all hover:bg-white hover:shadow-clay-lg"
             >
               <LogoutIcon className="h-4.5 w-4.5" />
             </button>

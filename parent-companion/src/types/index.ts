@@ -172,3 +172,149 @@ export interface AIInsight {
   title: string;
   description: string;
 }
+
+// ─── Champion Journey Types ────────────────────────────────────────────
+
+export type Sport =
+  | "football"
+  | "running"
+  | "cricket"
+  | "basketball"
+  | "badminton"
+  | "swimming"
+  | "athletics"
+  | "volleyball"
+  | "martial_arts"
+  | "cycling"
+  | "gymnastics";
+
+export type FitnessLevel = "sedentary" | "lightly_active" | "active" | "very_active";
+export type ExperienceLevel = "beginner" | "intermediate" | "advanced";
+export type TrainingTime = "morning" | "evening" | "weekends";
+export type AthleteLevel = "beginner" | "rookie" | "athlete" | "competitor" | "elite" | "champion" | "legend";
+
+export interface AthleteProfile {
+  age: number;
+  gender: string;
+  height: number;
+  weight: number;
+  schoolGrade: string;
+  fitnessLevel: FitnessLevel;
+  sportsInterested: Sport[];
+  primarySport: Sport;
+  secondarySport?: Sport;
+  experienceLevel: ExperienceLevel;
+  trainingDaysPerWeek: number;
+  availableTrainingTime: TrainingTime[];
+  previousInjuries: string;
+  medicalRestrictions: string;
+  availableEquipment: string;
+  goals: string[];
+  dreamAthlete: string;
+  createdAt: string;
+}
+
+export interface AthleteStats {
+  strength: number;
+  speed: number;
+  endurance: number;
+  flexibility: number;
+  agility: number;
+  balance: number;
+  reactionTime: number;
+  sleep: number;
+  hydration: number;
+  trainingConsistency: number;
+  mood: number;
+  overallScore: number;
+}
+
+export interface DailyMission {
+  id: string;
+  title: string;
+  description: string;
+  xp: number;
+  coins: number;
+  progress: number;
+  target: number;
+  completed: boolean;
+  emoji: string;
+}
+
+export interface DailyRoutineItem {
+  time: string;
+  label: string;
+  emoji: string;
+  category: "morning" | "training" | "school" | "recovery" | "evening" | "night";
+}
+
+export interface MealRecommendation {
+  meal: string;
+  items: string[];
+  explanation: string;
+  emoji: string;
+}
+
+export interface NutritionPlan {
+  breakfast: MealRecommendation;
+  lunch: MealRecommendation;
+  dinner: MealRecommendation;
+  snacks: MealRecommendation;
+  hydration: string[];
+  preWorkout: string[];
+  postWorkout: string[];
+  healthyAlternatives: string[];
+}
+
+export interface SleepData {
+  duration: number;
+  quality: "poor" | "fair" | "good" | "excellent";
+  status: "tracked" | "pending";
+}
+
+export interface LegendAthlete {
+  id: string;
+  name: string;
+  sport: string;
+  emoji: string;
+  biography: string;
+  dailyRoutine: string;
+  diet: string;
+  training: string;
+  sleepAndRecovery: string;
+  challenges: string[];
+  failures: string[];
+  achievements: string[];
+  mindset: string[];
+  lessons: string[];
+}
+
+export interface Competition {
+  id: string;
+  name: string;
+  date: string;
+  countdown: number;
+  preparationChecklist: string[];
+  trainingSuggestions: string[];
+  nutritionSuggestions: string[];
+  recoveryPlan: string[];
+  mentalPreparation: string[];
+  completed: boolean;
+}
+
+export interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  emoji: string;
+  unlocked: boolean;
+  unlockedAt?: string;
+  xp: number;
+}
+
+export interface CoachMessage {
+  id: string;
+  role: "coach" | "athlete";
+  text: string;
+  timestamp: string;
+}

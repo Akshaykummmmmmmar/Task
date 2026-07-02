@@ -33,7 +33,7 @@ export default function SignupPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-card border border-sand-300 bg-white/70 p-6 shadow-soft"
+          className="rounded-card border border-sand-300 bg-white/70 p-6 shadow-clay"
         >
           <div className="mb-4">
             <label htmlFor="name" className="mb-1.5 block text-xs font-medium text-stone-500">
@@ -78,7 +78,7 @@ export default function SignupPage() {
           </div>
           <button
             type="submit"
-            className="focus-ring w-full rounded-full bg-sage-500 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-sage-600"
+            className="focus-ring w-full rounded-full bg-sage-500 py-2.5 text-sm font-medium text-paper shadow-clay-btn transition-all hover:bg-sage-600 hover:shadow-clay-lg active:shadow-clay-inset"
           >
             Create account
           </button>

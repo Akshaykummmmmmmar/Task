@@ -77,7 +77,7 @@ export function ChildTaskPage({ types, backHref, children }: { types: ReminderTy
         <div className="flex flex-col gap-8">
           {children}
           {mine.length > 0 && (
-            <div className="fade-in rounded-[24px] bg-white/70 px-5 py-4 shadow-soft">
+            <div className="fade-in rounded-2xl bg-white/70 px-5 py-4 shadow-clay">
               <div className="mb-2 flex items-center justify-between">
                 <p className="text-sm font-medium text-ink">
                   {done.length} of {mine.length} done today
@@ -105,7 +105,7 @@ export function ChildTaskPage({ types, backHref, children }: { types: ReminderTy
               )}
             </div>
             {todo.length === 0 ? (
-              <div className="fade-in flex flex-col items-center gap-3 rounded-[24px] border-2 border-dashed border-sky-200 bg-white/50 px-6 py-10 text-center">
+              <div className="fade-in flex flex-col items-center gap-3 rounded-2xl border-2 border-dashed border-sky-200 bg-white/50 px-6 py-10 text-center shadow-clay-inset">
                 <BadgeIcon className="h-10 w-10 text-sky-500" />
                 <p className="font-display text-lg italic text-ink">
                   All done for now!
