@@ -437,3 +437,17 @@ export function CloseIcon({ className }: IconProps) {
   );
 }
 
+export function ProfileIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <circle cx="12" cy="8" r="4.5" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M4 21c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
