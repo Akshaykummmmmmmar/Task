@@ -39,12 +39,17 @@ export interface Child {
   avatarInitials: string;
   linkedAt: string;
   pin: string; // 4-digit PIN used for child login (demo only, not secure)
+  age?: string;
+  grade?: string;
 }
 
 export interface Parent {
   id: string;
   name: string;
   email: string;
+  phone?: string;
+  avatarInitials?: string;
+  age?: number;
 }
 
 export type Role = "parent" | "child";
@@ -150,4 +155,20 @@ export interface ActivityItem {
   kind: ReminderType | "note";
   label: string;
   occurredAt: string;
+}
+
+export interface AIMessage {
+  id: string;
+  role: "assistant" | "user";
+  content: string;
+  timestamp: string;
+}
+
+export type AIInsightType = "alert" | "tip" | "praise" | "suggestion";
+
+export interface AIInsight {
+  id: string;
+  type: AIInsightType;
+  title: string;
+  description: string;
 }

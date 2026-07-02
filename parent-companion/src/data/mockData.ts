@@ -22,6 +22,9 @@ export const mockParent: Parent = {
   id: "parent_1",
   name: "Asha Varma",
   email: "asha.varma@example.com",
+  phone: "+91 98765 43210",
+  avatarInitials: "AV",
+  age: 38,
 };
 
 export const mockChildren: Child[] = [
@@ -32,6 +35,8 @@ export const mockChildren: Child[] = [
     avatarInitials: "RV",
     linkedAt: "2026-04-02T09:00:00.000Z",
     pin: "1234",
+    age: "9",
+    grade: "4th",
   },
 ];
 

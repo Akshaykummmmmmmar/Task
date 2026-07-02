@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,8 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        paper: "#FAF7F2",
-        ink: "#2D2A26",
+        paper: "var(--color-paper)",
+        ink: "var(--color-ink)",
+        surface: "var(--color-surface)",
+        "surface-muted": "var(--color-surface-muted)",
+        "surface-solid": "var(--color-surface-solid)",
+        border: "var(--color-border)",
+        "border-subtle": "var(--color-border-subtle)",
+        muted: "var(--color-muted)",
         sage: {
           50: "#EEF2EF",
           100: "#DCE6E0",
